@@ -1,0 +1,97 @@
+/* CSS styles here */
+body {
+    background-color:#ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #707070;
+    display: flex;
+    margin-left: 200px;
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+/* Styles for the developer tag */
+.developer-tag {
+    position: absolute;
+    top: 680px;
+    font-family: 'Segoe UI';
+    border-radius: 10px;
+}
+
+/* Styles for the link inside the developer tag */
+.developer-tag a {
+    font-style: normal;
+    color: #707070;
+    text-decoration: none;
+}
+
+/* Styles for the tag element when hovering over the developer tag */
+.developer-tag:hover .tag {
+    color: #707070;
+    font-size: smaller;
+}
+
+/* Additional styles for the tag element */
+.tag {
+    color: #ffffff;
+}
+
+
+header {
+    background-color: #ffffff;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100vh;
+    width: 150px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+nav ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul.menu li {
+    margin-bottom: 10px;
+}
+
+nav ul.menu li a {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Segoe UI';
+    display: block;
+    padding: 10px 0;
+    color: #707070;
+    margin-left: 20px;
+}
+
+nav ul.menu li a:hover {
+    color: #b6b6b6;
+}
+
+.menu img{
+    width: 120%;
+    height:auto;
+    margin-left: 20px;
+    margin-top: 90px;
+    margin-bottom: 30px;
+    filter: opacity(70%);
+    -webkit-filter: opacity(70%);
+}
+

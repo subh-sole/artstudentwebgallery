@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="paniz mani" content="panizmanistudios">
+        <meta name="author" content="https://github.com/subh-sole">
+        <meta name="contact" content="subhansolehria@live.com">
+        <title>Studios</title>
+        <link rel="icon" href="myphotosign_217525/signs/myphotosign_217525_w.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="myphotosign_217525/signs/myphotosign_217525_b.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="frontpage.css">
+        
+        <style>
+            
+            /* CSS styles here */
+            /* Add mobile-specific styles using media queries */
+        @media (max-width: 768px) {
+            header {
+                background-color: #ffffff;
+                /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-direction: column;
+                height: 100vh;
+                width: 150px;
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1;
+            }
+
+            .secondary-menu li{
+                margin: 60px 60px 60px 50px;
+                
+            }
+            nav ul.menu li a {
+                text-decoration: none;
+                font-size: 28px;
+                font-family: 'Segoe UI';
+                display: block;
+                padding: 10px 0;
+                color: #707070;
+                margin-left: 20px;
+            }
+        }
+            /*page specific*/
+            .secondary-menu{
+                display: flex;
+                flex-direction: row;
+                background-color:#ffffff;
+                margin-left: 0px;  
+            }
+            .secondary-menu li{
+                margin: 20px 20px 20px 10px;
+                font-size: 16px;
+                font-weight: 300;
+                font-family: 'Segoe UI';
+                display: block;
+            }
+            /* Add the "sticky" class to the secondary-menu when you scroll down */
+            .secondary-menu.sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background-color: #ffffff;
+                z-index: 1; /* Adjust the z-index to make sure the menu stays on top */
+            }
+            /* Add a bit of padding to the body when the secondary-menu becomes sticky */
+            body.sticky-padding {
+                padding-top: 40px; /* Adjust this value to give enough space for the sticky menu */
+            }
+            .secondary-menu li a{
+                text-decoration: none;
+                color: #707070;
+            }
+            .secondary-menu li a:hover {
+                color: #b6b6b6;  
+            }
+            .top-template{
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 0px;
+                justify-content: center;
+                margin-top: 30px;
+            }
+            .image-container {
+                margin: 20px 20px 0px 0;
+                width: 690px;
+                height: auto; /* Set a fixed height for all images */
+                border-radius: 0px;
+                /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);*/
+                position: relative; /* Add relative positioning to the container */
+            }
+            .image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Make sure the image covers the entire container */
+            }
+            .arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
+                color:#333;
+                font-size: 90px;
+                text-align: center;
+                line-height: 40px;
+                cursor: pointer;
+                opacity: 0.7;
+                transition: opacity 0.3s ease;
+                filter: opacity(10%);
+            }
+            .arrow-left {
+                left: 10px;
+            }
+            .arrow-right {
+                right: 10px;
+            }
+            .description {
+                margin: 20px 0;
+                text-align: center;
+                margin-left: 0px;
+                font-family: 'Segoe UI';
+            }
+            .description h1 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: bold;      
+            }
+            .description p {
+                margin: 10px 0;      
+                font-size: 14px;
+            }
+            .description .button-container {
+                margin-top: 15px;
+                margin-bottom: 10px;
+            }
+            .description .button-container a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #c2c2c2;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 0px;
+                transition: background-color 0.3s ease;
+            }
+            .description .button-container a:hover {
+                background-color: #555555;
+            }
+            .title h1{
+            font-weight: 300;
+            font-family: 'Segoe UI';
+            }
+            /* Add this CSS to style the exhibitions section */
+            .exhibitions {    
+                display: flex; /* Change the display property to flex */
+                margin-top: 90px;
+                font-family: 'Segoe UI';
+            }
+            .image-collage {
+                position: relative;
+                width: 1000px;
+                height: 600px;
+                margin-top: 0px;
+                margin-left: 70px;
+            }
+            /* Set the width and height of each image in the collage */
+            .image-collage img {
+                position: absolute;
+                justify-items: center;
+                object-fit:fill; /* Make sure the images cover the container properly */
+                cursor: pointer; /* Show pointer cursor on hover */
+                filter: opacity(100%);
+            }
+        
+            
+        
+            /* Optionally, add a border to each image for a decorative effect */
+            .image-collage img {
+                border: 2px solid #ffffff;
+            }
+        
+            /* Optionally, add a hover effect to the images */
+            /* This will change the border color on hover */
+            .image-collage img:hover {
+                filter: opacity(70%);
+            }
+        
+            /* Add CSS classes to change the size and position of specific images */
+            .exhibition-item {
+            position: relative;
+            margin: 10px;
+            }
+        
+            /* Add CSS classes to change the size and position of specific images */
+            .exhibition-image1 {
+                position: absolute;
+                top: 20px;
+                left: 60px; /* Adjusted left position */
+                height: auto;
+                width: 20%;
+            }
+        
+            .exhibition-image2 {
+                position: absolute;
+                top: 200px;
+                left: 117px; /* Adjusted left position */
+                height: auto;
+                width: 15%;
+            }
+        
+            .exhibition-image6 {
+                position: absolute;
+                top: 417px;
+                left: 60px; /* Adjusted left position */
+                height: auto;
+                width: 27%;
+                /*bright*/
+            }
+        
+            .exhibition-image5 {
+                position: absolute;
+                top: 275px;
+                left: 340px; /* Adjusted left position */
+                height: auto;
+                width: 25%;
+                /*walcar*/
+            }
+        
+            .exhibition-image8 {
+                position: absolute;
+                top: 85px;
+                left: 280px; /* Adjusted left position */
+                height: auto;
+                width: 15%;
+                /*green*/
+            }
+        
+            .exhibition-image7 {
+                position: absolute;
+                top: 40px;
+                left: 450px; /* Adjusted left position */
+                height: auto;
+                width: 17%;
+                /*hand*/
+            }
+        
+            .exhibition-image3 {
+                position: absolute;
+                top: 480px;
+                left: 340px; /* Adjusted left position */
+                height: auto;
+                width: 36%;
+            }
+        
+            .exhibition-image4 {
+                position: absolute;
+                top: 80px;
+                left: 625px; /* Adjusted left position */
+                height: auto;
+                width: 25%;
+                /*slant*/
+                overflow: hidden; /* Hide anything outside the container */
+                object-position: 0 35px;
+            }
+        
+            .exhibition-image9 {
+                position: absolute;
+                top: 300px;
+                left: 595px; /* Adjusted left position */
+                height: auto;
+                width: 20%;
+                /*fence*/
+            }
+            /* Apply filter to .description elements when hovering over images in .image-collage */
+            .exhibition-image9:hover ~ .image-title9 {
+                filter: opacity(100%);
+            }
+            .exhibition-image8:hover ~ .image-title8 {
+                filter: opacity(100%);
+            }
+            .exhibition-image7:hover ~ .image-title7 {
+                filter: opacity(100%);
+            }
+            .exhibition-image6:hover ~ .image-title6 {
+                filter: opacity(100%);
+            }
+            .exhibition-image5:hover ~ .image-title5 {
+                filter: opacity(100%);
+            }
+            .exhibition-image4:hover ~ .image-title4 {
+                filter: opacity(100%);
+            }
+            .exhibition-image3:hover ~ .image-title3 {
+                filter: opacity(100%);
+            }
+            .exhibition-image2:hover ~ .image-title2 {
+                filter: opacity(100%);
+            }
+            .exhibition-image1:hover ~ .image-title1 {
+                filter: opacity(100%);
+            }
+
+            .image-title1 {
+            bottom: 460px;
+            left: -670px; /* Adjusted left position */
+            }
+        
+            .image-title2 {
+            bottom: 289px;
+            left: -610px; /* Adjusted left position */
+            }
+        
+            .image-title3 {
+            bottom: 0px;
+            left: 50px; /* Adjusted left position */
+            }
+        
+            .image-title4 {
+            bottom: 335px;
+            left: 510px; /* Adjusted left position */
+            }
+        
+            .image-title5 {
+            bottom: 180px;
+            left: -65px; /* Adjusted left position */
+            }
+        
+            .image-title6 {
+            bottom: 70px;
+            left: -600px; /* Adjusted left position */
+            }
+        
+            .image-title7 {
+            bottom: 390px;
+            left: 75px; /* Adjusted left position */
+            }
+        
+            .image-title8 {
+            bottom: 360px;
+            left: -285px; /* Adjusted left position */
+            }
+        
+            .image-title9 {
+            bottom: 180px;
+            left: 400px; /* Adjusted left position */
+            } 
+        
+            .image-title{
+                position: absolute;
+                right: 0;
+                background-color: transparent;
+                color: #ffffff;
+                font-weight: 300;
+                text-transform: uppercase;
+                padding: 5px;
+                font-size: 16px;
+                text-align: center;
+                cursor:none;
+                filter: opacity(0%);
+                pointer-events: none;
+            }
+
+        
+            .about {
+                margin-top: 200px;
+                display: flex;
+                flex-direction: row;
+                color: #707070;
+                margin-right: 100px;
+                font-family: 'Segoe UI';
+        
+            }
+        
+            .about-content {
+                margin-top: 0px;
+                background-color: #ffffff;
+                padding: 10px;
+                border-radius: 0;
+                margin-right: 0px;
+                margin-left: 65px;
+            }
+        
+            .about h1 {
+                color: #707070;
+                font-size: 28px;
+                font-weight: 300;
+                margin-bottom: 20px;
+                font-family: 'Segoe UI';
+            }
+        
+            .about p {
+                color: #707070;
+                font-size: 16px;
+                line-height: 1.6;
+                
+    
+            }
+            .about p2{
+                font-family: 'Segoe UI';
+            }
+        
+            .about div img {
+                max-width: 110%; /* Limit the width to the container's width */
+                max-height: 800px; /* Limit the height to 400 pixels */
+                margin-right: 390px; 
+                object-position: 0 -35px;
+                overflow: hidden;
+
+            }
+        
+            .about div p{
+                text-align: center;
+                margin-top: -40px;
+                font-size: 12px;
+                margin-right: 55px;
+                margin-left: 95px;
+            }      
+        
+            
+            
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="developer-tag">
+                    <a href="https://github.com/subh-sole" target="_blank">Developer-tag</a>
+                    <p class="tag">https://github.com/subh-sole</p>
+                </div>
+                
+                
+                <nav>
+                    <ul class="menu">
+                        <img src="myphotosign_217525/signs/myphotosign_217525_b.png" alt="Image 1">
+    
+                        <li><a href="frontpage.html">HOME</a></li>
+    
+                        <li><a href="gallery.html">GALLERY</a></li>
+    
+                        <li><a href="contact.html">CONTACT</a></li>
+    
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <div class="container">     
+            
+            <div class="secondary-menu">             
+                <li><a onclick="scrollToTop()">WORKS</a></li>
+                <li><a onclick="scrollToAbout()">ABOUT</a></li>
+                <li><a onclick="scrollToBottom()">PORTFOLIO</a></li>           
+            </div> 
+    
+            <div class = "works" id = "works">
+                  
+                <div class="top-template">
+                    <div class="image-container">
+                       
+                        <img id="slideshow-image" src="images/image1.jpg" alt="Documentary Photography">
+                        <div class="arrow arrow-left">&#8249;</div>
+                        <div class="arrow arrow-right">&#8250;</div>
+                    </div>
+                    
+                </div>
+                
+                <div class="description">
+                    <h1  id="description-heading"></h1>
+                    <p id="description-paragraph">CITY IN COLOUR, 2021, KODAK SLIDE FILM<br>BURNABY, BC, CANADA</p>
+                    <p>© 2023 Paniz Mani</p>
+                    <div class="button-container">
+                        <a href="gallery.html" class="button">View Gallery</a>
+                        <a href="contact.html" class="button">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="about" id = "about">
+                <div class = "bio-img">
+                    <img src="drive-download-20230713T032251Z-001/meeting the beloved/13001.jpg" alt="About (پانیذ) Studios">
+                    <p>Self-Portrait From series "Meeting be Loved" 2022
+                        MEDUME FORMAL DIGITAL, BC, CANADA</p>
+                </div>
+                <div class="about-content">
+                    <h1>ABOUT THE ARTIST</h1>
+                    <p2>
+                        Paniz is an Iranian artist currently pursuing a Bachelor's degree in Photography at Emily Carr
+                        University of Art and Design. Her practice mainly focuses on photography. Paniz's work greatly
+                        reflects her perspective on life and her surroundings. Her interest in psychology and human
+                        studies also influences the artist's practice in her recent works. In accordance with her
+                        personality, Paniz's style of photography is quiet and introverted. Through her art practice, Paniz
+                        is learning to enhance her senses to become more aware of her surroundings and to better
+                        understand others.
+                        With a diverse range of interests and a deep passion for exploring the human soul, Paniz's body
+                        of work encompasses street photography, self-portraits, and portraits. Street photography and
+                        industrial scapes, which focus on studying urban structures and environmental changes in human
+                        activities. In her earlier works, she was influenced by the Dusseldorf School of Photography in
+                        terms of compositions and framing. However, her recent projects lean more towards conceptual
+                        art, influenced by the work of Edward Burtynsky and the concept of the toxic sublime (finding
+                        beauty in something horrific). Other parts of her practice focus on portraiture and self-portraiture
+                        with the aim of studying the human soul and behaviors through culture and society. Paniz sees
+                        her everyday interactions and the people around her as exciting subjects to explore and observe.
+                        In this practice, she tries to see, not just look; to feel, not just touch; and to listen, not just hear, in
+                        order to have a deeper connection with her surrounding world. In this sense, her artwork has
+                        always been a reflection of her life experience and the journey of self-discovery.
+                    </p2>
+                </div>               
+            </div>
+    
+    
+            <div class="exhibitions" id="exhibitions">
+                <div class="container">
+                    <div class="image-collage">
+                        <a href="gallery.html?category=poetry book" data-category="poetry book">
+                            <img class="exhibition-image1" src="drive-download-20230713T032251Z-001/poetry book/15008.jpeg" alt="Image 1">
+                            <div class="image-title1 image-title">poetry book</div>
+    
+                        </a>
+                        <a href="gallery.html?category=only 23kg, don_t forget" data-category="only 23kg, don_t forget">
+                            <img class="exhibition-image2" src="drive-download-20230713T032251Z-001/only 23kg, don_t forget/14004.jpg" alt="Image 2">
+                            <div class="image-title2 image-title">only 23kg, <br>don't forget</div>
+
+                        </a>
+    
+                        <a href="gallery.html?category=city in color"data-category="city in color">
+                            <img class="exhibition-image9" src="drive-download-20230713T032251Z-001/city in color/11002.jpeg" alt="Image 9">
+                            <div class="image-title9 image-title">city in color</div>
+    
+                        </a>
+                        <a href="gallery.html?category=enigma of the city"data-category="enigma of the city">
+                            <img class="exhibition-image4" src="drive-download-20230713T032251Z-001/enigma of the city/12003.jpeg" alt="Image 4">
+                            <div class="image-title4 image-title">enigma of the city</div>
+    
+                        </a>
+                        <a href="gallery.html?category=intimate life"data-category="intimate life">
+                            <img class="exhibition-image6" src="drive-download-20230713T032251Z-001/intimate life/10016.JPG" alt="Image 6">
+                            <div class="image-title6 image-title">intimate life</div>
+    
+                        </a>
+                        <a href="gallery.html?category=enigma of the city"data-category="enigma of the city">
+                            <img class="exhibition-image5" src="drive-download-20230713T032251Z-001/enigma of the city/12001.jpeg" alt="Image 5">
+                            <div class="image-title5 image-title">enigma of the city</div>
+    
+                        </a>
+                        <a href="gallery.html?category=intimate life"data-category="intimate life">
+                            <img class="exhibition-image3" src="drive-download-20230713T032251Z-001/intimate life/10014.jpg" alt="Image 3">
+                            <div class="image-title3 image-title">intimate life</div>
+    
+                        </a>
+                        <a href="gallery.html?category=meeting the beloved"data-category="meeting the beloved">
+                            <img class="exhibition-image7" src="drive-download-20230713T032251Z-001/meeting the beloved/13004.jpg" alt="Image 7">
+                            <div class="image-title7 image-title">meeting<br> the beloved</div>
+    
+                        </a>
+                        <a href="gallery.html?category=meeting the beloved"data-category="meeting the beloved">
+                            <img class="exhibition-image8" src="drive-download-20230713T032251Z-001/meeting the beloved/13002.jpg" alt="Image 8">
+                            <div class="image-title8 image-title">meeting<br> the beloved</div>
+    
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            
+            
+            // Placeholder function to simulate an error
+            function simulateError() {
+                // Replace this with your actual error-checking logic
+                const hasErrorOccurred = true;
+
+                if (hasErrorOccurred) {
+                    // Redirect to the error page
+                    window.location.href = 'error.html';
+                }
+            }
+
+        
+            function disableRightClick(event) {
+                event.preventDefault();
+            }
+            // Attach the event listener to the document
+            document.addEventListener('contextmenu', disableRightClick);
+            // JavaScript function to scroll to the top of the page
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            function scrollToAbout() {
+                window.scrollTo({ top: 790, behavior: 'smooth' });
+            }
+            function scrollToBottom() {
+                window.scrollTo({ top: 1900, behavior: 'smooth' });
+            }
+
+            // Function to toggle the menu on mobile devices
+            function toggleMenu() {
+                var menu = document.querySelector('nav ul');
+                menu.classList.toggle('show');
+            }
+    
+            document.addEventListener("DOMContentLoaded", function() {
+            const aboutButton = document.querySelector('.about-button');
+    
+            aboutButton.addEventListener('click', function() {
+                const aboutSection = document.getElementById('about');
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            });
+    
+            function handleScroll() {
+                const secondaryMenu = document.querySelector('.secondary-menu');
+                const initialMenuOffsetTop = secondaryMenu.offsetTop;
+                const scrollPosition = window.pageYOffset;
+
+                if (scrollPosition >= initialMenuOffsetTop) {
+                    secondaryMenu.classList.add('sticky');
+                    document.body.classList.add('sticky-padding');
+                } else {
+                    secondaryMenu.classList.remove('sticky');
+                    document.body.classList.remove('sticky-padding');
+                }
+            }
+
+            // Add the scroll event listener
+            window.addEventListener('scroll', handleScroll);
+
+    
+            // JavaScript code to make the secondary menu follow as you scroll down
+    
+            // Select the secondary menu element
+            const secondaryMenu = document.querySelector('.secondary-menu');
+    
+            // Get the initial position of the secondary menu
+            const initialMenuOffsetTop = secondaryMenu.offsetTop;
+    
+            // Image Slideshow
+            const slideshowImage = document.getElementById('slideshow-image');
+            const imageFolder = 'images/';
+            const imageList = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
+            const descriptionHeading = document.getElementById('description-heading');
+            const descriptionParagraph = document.getElementById('description-paragraph');
+            let currentImageIndex = 0;
+    
+            function changeImage() {
+                currentImageIndex = (currentImageIndex + 1) % imageList.length;
+                const imagePath = imageFolder + imageList[currentImageIndex];
+                slideshowImage.src = imagePath;
+    
+                updateDescription();
+            }
+    
+            setInterval(changeImage, 4000); // Change image every 4 seconds
+    
+            
+            // Slideshow arrows functionality
+            const arrowLeft = document.querySelector('.arrow-left');
+            const arrowRight = document.querySelector('.arrow-right');
+    
+            arrowLeft.addEventListener('click', function () {
+                currentImageIndex = (currentImageIndex - 1 + imageList.length) % imageList.length;
+                const imagePath = imageFolder + imageList[currentImageIndex];
+                slideshowImage.src = imagePath;
+    
+                updateDescription();
+            });
+    
+            arrowRight.addEventListener('click', function () {
+                currentImageIndex = (currentImageIndex + 1) % imageList.length;
+                const imagePath = imageFolder + imageList[currentImageIndex];
+                slideshowImage.src = imagePath;
+    
+                updateDescription();
+            });
+    
+            function updateDescription() {
+                if (currentImageIndex === 0) {
+                    descriptionHeading.textContent = "";
+                    descriptionParagraph.textContent = "CITY IN COLOUR, 2021, KODAK SLIDE FILM BURNABY, BC, CANADA";
+                } else if (currentImageIndex === 1) {
+                    descriptionHeading.textContent = "";
+                    descriptionParagraph.textContent = "ENIGMA OF THE CITY, 2019, ILFORD B&W FILM";
+                } else if (currentImageIndex === 2) {
+                    descriptionHeading.textContent = "";
+                    descriptionParagraph.textContent = "INTIMATE LIFE, 2020, KODAK EXPIRED FILM";
+                } else if (currentImageIndex === 3) {
+                    descriptionHeading.textContent = "";
+                    descriptionParagraph.textContent = "MUDBAY BEACH, FROM \"THE STUDY OF NATURE\", 2022, ILFORD B&W FILM";
+                }
+                
+            } 
+        </script>
+    </body>
+</html>

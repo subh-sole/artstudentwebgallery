@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="paniz mani" content="panizmanistudios">
+    <meta name="author" content="https://github.com/subh-sole">
+    <meta name="contact" content="subhansolehria@live.com">
+    <title>Gallery</title>
+    <link rel="icon" href="myphotosign_217525/signs/myphotosign_217525_w.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="myphotosign_217525/signs/myphotosign_217525_b.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="frontpage.css">
+    <style>
+        /* page specific styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; /* Horizontally center the image */
+            align-items: center; /* Vertically center the image */
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(93, 93, 93, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+            pointer-events: none; /* Add this line to make the overlay ignore pointer events */
+        }
+
+        .gallery-item .overlay-content {
+            text-align: center;
+            font-family:Segoe UI;
+           
+
+        }
+        
+        .gallery-item .overlay-content h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .gallery-item .overlay-content p {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        
+
+        .gallery-item .overlay-content a:hover {
+            font-family:Segoe UI;
+            font-size: larger;
+        }
+        .pagination {
+            margin-top: 0px;
+            display: flex;
+            justify-content: center;         
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-family:Segoe UI;
+            font-weight: 300;
+        }
+
+        .pagination button.active {
+            background-color: transparent;
+            color: #000000;
+            font-size: 35px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 1200px; /* Add a fixed width for the search container */
+            flex-direction: row;
+        }
+
+        .search-container #categorySelect {
+            margin-left: 30px;
+        }
+
+        .search-container .category-button {
+            margin-right: 10px;  
+            padding: 10px;
+            background-color: #ffffff;
+            color: #3c3c3c;
+            text-decoration: none;
+            border: none;
+            border-radius: 0px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: capitalize;
+            font-family:Segoe UI;
+            font-weight: 300;
+        }
+
+        .search-container input[type="text"] {
+            flex: 1; /* Allow the input field to grow and take remaining space */
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ffffff;
+            font-family:Segoe UI;
+            font-weight: 300;
+
+        }
+        .search-container ul{
+            display: block;
+            flex-direction: row;           
+            font-weight: 300;
+
+        }
+        .search-container ul h2{
+            font-size: smaller;
+            color:#a5a5a5;
+            margin-left: 380px;
+        }     
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-family:Segoe UI;
+            font-weight: 300;
+        }      
+        .front-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+        }
+        .front-view.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .front-view img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 2px solid #6f6d69; /* Add border style here */
+
+        }
+        .front-view .close-button {
+            position: absolute;
+            top: -800px;
+            right: 100px;
+            padding: 5px 10px;
+            font-size: 2000px;
+            background-color: transparent;
+            border: none;
+            color: transparent;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .category-container {
+            display: flex;
+            align-items: center;
+            font-family:Segoe UI;
+            font-size: 50px;        
+        }
+        .category-button:hover {
+            background-color: #f1f1f1;           
+        }
+        /* Add a class for active category button */
+        .category-button.active {
+            color: #b6b6b6;
+        }
+        /* Style for the "Clear" button */
+        .clear-button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            
+            <nav>
+                <ul class="menu">
+                    <img src="myphotosign_217525/signs/myphotosign_217525_b.png" alt="Image 1">
+
+                    <li><a href="frontpage.html">HOME</a></li>
+
+                    <li><a href="gallery.html">GALLERY</a></li>
+
+                    <li><a href="contact.php">CONTACT</a></li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search Gallery">
+        <ul>
+            <h2>-Filters-</h2> 
+            <div id="categorySelect">
+                <button class="category-button" data-category="">all</button>
+            </div>
+        </ul>
+        
+    </div>
+
+    <div class="gallery"></div>
+    <div class="front-view"></div>
+
+    <div class="pagination"></div>
+</div>
+
+
+
+
+<script>
+    
+const galleryItems = [
+
+// Add more gallery items here
+// Inserted files start here
+{ id: 6001, image: 'drive-download-20230713T032251Z-001/city in color/11001.jpeg', category: 'city in color', title: 'id: 6001', description: 'City in Color Image 1' },
+{ id: 6002, image: 'drive-download-20230713T032251Z-001/city in color/11002.jpeg', category: 'city in color', title: 'id: 6002', description: 'City in Color Image 2' },
+{ id: 6003, image: 'drive-download-20230713T032251Z-001/city in color/11003.jpeg', category: 'city in color', title: 'id: 6003', description: 'City in Color Image 3' },
+{ id: 6004, image: 'drive-download-20230713T032251Z-001/city in color/11004.jpeg', category: 'city in color', title: 'id: 6004', description: 'City in Color Image 4' },
+{ id: 6005, image: 'drive-download-20230713T032251Z-001/city in color/11005.jpeg', category: 'city in color', title: 'id: 6005', description: 'City in Color Image 5' },
+{ id: 6006, image: 'drive-download-20230713T032251Z-001/city in color/11006.jpg', category: 'city in color', title: 'id: 6006', description: 'City in Color Image 6' },
+{ id: 6007, image: 'drive-download-20230713T032251Z-001/city in color/11007.jpg', category: 'city in color', title: 'id: 6007', description: 'City in Color Image 7' },
+{ id: 6008, image: 'drive-download-20230713T032251Z-001/city in color/11008.jpg', category: 'city in color', title: 'id: 6008', description: 'City in Color Image 8' },
+{ id: 6009, image: 'drive-download-20230713T032251Z-001/city in color/11009.jpg', category: 'city in color', title: 'id: 6009', description: 'City in Color Image 9' },
+//{ id: 6010, image: 'drive-download-20230713T032251Z-001/city in color/photodetails.txt', category: 'city in color', title: 'id: 6010', description: 'City in Color Photo Details' },
+{ id: 7001, image: 'drive-download-20230713T032251Z-001/enigma of the city/12001.jpeg', category: 'enigma of the city', title: 'id: 7001', description: 'Enigma of the City Image 1' },
+{ id: 7002, image: 'drive-download-20230713T032251Z-001/enigma of the city/12002.jpeg', category: 'enigma of the city', title: 'id: 7002', description: 'Enigma of the City Image 2' },
+{ id: 7003, image: 'drive-download-20230713T032251Z-001/enigma of the city/12003.jpeg', category: 'enigma of the city', title: 'id: 7003', description: 'Enigma of the City Image 3' },
+{ id: 7004, image: 'drive-download-20230713T032251Z-001/enigma of the city/12004.jpeg', category: 'enigma of the city', title: 'id: 7004', description: 'Enigma of the City Image 4' },
+{ id: 7005, image: 'drive-download-20230713T032251Z-001/enigma of the city/12005.jpeg', category: 'enigma of the city', title: 'id: 7005', description: 'Enigma of the City Image 5' },
+{ id: 7006, image: 'drive-download-20230713T032251Z-001/enigma of the city/12006.jpeg', category: 'enigma of the city', title: 'id: 7006', description: 'Enigma of the City Image 6' },
+//{ id: 7007, image: 'drive-download-20230713T032251Z-001/enigma of the city/photodetails.txt', category: 'enigma of the city', title: 'id: 7007', description: 'Enigma of the City Photo Details' },
+{ id: 8001, image: 'drive-download-20230713T032251Z-001/intimate life/10001.jpg', category: 'intimate life', title: 'id: 8001', description: 'Intimate Life Image 1' },
+{ id: 8002, image: 'drive-download-20230713T032251Z-001/intimate life/10002.jpg', category: 'intimate life', title: 'id: 8002', description: 'Intimate Life Image 2' },
+{ id: 8003, image: 'drive-download-20230713T032251Z-001/intimate life/10003.jpeg', category: 'intimate life', title: 'id: 8003', description: 'Intimate Life Image 3' },
+{ id: 8004, image: 'drive-download-20230713T032251Z-001/intimate life/10004.jpeg', category: 'intimate life', title: 'id: 8004', description: 'Intimate Life Image 4' },
+{ id: 8005, image: 'drive-download-20230713T032251Z-001/intimate life/10005.jpeg', category: 'intimate life', title: 'id: 8005', description: 'Intimate Life Image 5' },
+{ id: 8006, image: 'drive-download-20230713T032251Z-001/intimate life/10006.jpeg', category: 'intimate life', title: 'id: 8006', description: 'Intimate Life Image 6' },
+{ id: 8007, image: 'drive-download-20230713T032251Z-001/intimate life/10007.jpeg', category: 'intimate life', title: 'id: 8007', description: 'Intimate Life Image 7' },
+{ id: 8008, image: 'drive-download-20230713T032251Z-001/intimate life/10008.jpeg', category: 'intimate life', title: 'id: 8008', description: 'Intimate Life Image 8' },
+{ id: 8009, image: 'drive-download-20230713T032251Z-001/intimate life/10009.jpeg', category: 'intimate life', title: 'id: 8009', description: 'Intimate Life Image 9' },
+{ id: 8010, image: 'drive-download-20230713T032251Z-001/intimate life/10010.jpeg', category: 'intimate life', title: 'id: 8010', description: 'Intimate Life Image 10' },
+{ id: 8011, image: 'drive-download-20230713T032251Z-001/intimate life/10011.jpeg', category: 'intimate life', title: 'id: 8011', description: 'Intimate Life Image 11' },
+{ id: 8012, image: 'drive-download-20230713T032251Z-001/intimate life/10012.jpeg', category: 'intimate life', title: 'id: 8012', description: 'Intimate Life Image 12' },
+{ id: 8013, image: 'drive-download-20230713T032251Z-001/intimate life/10013.jpg', category: 'intimate life', title: 'id: 8013', description: 'Intimate Life Image 13' },
+{ id: 8014, image: 'drive-download-20230713T032251Z-001/intimate life/10014.jpg', category: 'intimate life', title: 'id: 8014', description: 'Intimate Life Image 14' },
+{ id: 8015, image: 'drive-download-20230713T032251Z-001/intimate life/10015.JPG', category: 'intimate life', title: 'id: 8015', description: 'Intimate Life Image 15' },
+{ id: 8016, image: 'drive-download-20230713T032251Z-001/intimate life/10016.JPG', category: 'intimate life', title: 'id: 8016', description: 'Intimate Life Image 16' },
+{ id: 8017, image: 'drive-download-20230713T032251Z-001/intimate life/10017.jpg', category: 'intimate life', title: 'id: 8017', description: 'Intimate Life Image 17' },
+{ id: 8018, image: 'drive-download-20230713T032251Z-001/intimate life/10018.JPG', category: 'intimate life', title: 'id: 8018', description: 'Intimate Life Image 18' },
+//{ id: 8019, image: 'drive-download-20230713T032251Z-001/intimate life/photodetails.txt', category: 'intimate life', title: 'id: 8019', description: 'Intimate Life Photo Details' },
+{ id: 9001, image: 'drive-download-20230713T032251Z-001/meeting the beloved/13001.jpg', category: 'meeting the beloved', title: 'id: 9001', description: 'Meeting the Beloved Image 1' },
+{ id: 9002, image: 'drive-download-20230713T032251Z-001/meeting the beloved/13002.jpg', category: 'meeting the beloved', title: 'id: 9002', description: 'Meeting the Beloved Image 2' },
+{ id: 9003, image: 'drive-download-20230713T032251Z-001/meeting the beloved/13003.jpg', category: 'meeting the beloved', title: 'id: 9003', description: 'Meeting the Beloved Image 3' },
+{ id: 9004, image: 'drive-download-20230713T032251Z-001/meeting the beloved/13004.jpg', category: 'meeting the beloved', title: 'id: 9004', description: 'Meeting the Beloved Image 4' },
+{ id: 9005, image: 'drive-download-20230713T032251Z-001/meeting the beloved/13005.jpg', category: 'meeting the beloved', title: 'id: 9005', description: 'Meeting the Beloved Image 5' },
+//{ id: 9006, image: 'drive-download-20230713T032251Z-001/meeting the beloved/photodetails.txt', category: 'meeting the beloved', title: 'id: 9006', description: 'Meeting the Beloved Photo Details' },
+{ id: 10001, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14001.jpg', category: 'only 23kg, don_t forget', title: 'id: 10001', description: 'Only 23kg, Don_t Forget Image 1' },
+{ id: 10002, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14002.jpg', category: 'only 23kg, don_t forget', title: 'id: 10002', description: 'Only 23kg, Don_t Forget Image 2' },
+{ id: 10003, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14003.jpg', category: 'only 23kg, don_t forget', title: 'id: 10003', description: 'Only 23kg, Don_t Forget Image 3' },
+{ id: 10004, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14004.jpg', category: 'only 23kg, don_t forget', title: 'id: 10004', description: 'Only 23kg, Don_t Forget Image 4' },
+{ id: 10005, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14005.jpg', category: 'only 23kg, don_t forget', title: 'id: 10005', description: 'Only 23kg, Don_t Forget Image 5' },
+{ id: 10006, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/14006.jpg', category: 'only 23kg, don_t forget', title: 'id: 10006', description: 'Only 23kg, Don_t Forget Image 6' },
+//{ id: 10007, image: 'drive-download-20230713T032251Z-001/only 23kg, don_t forget/photodetails.txt', category: 'only 23kg, don_t forget', title: 'id: 10007', description: 'Only 23kg, Don_t Forget Photo Details' },
+{ id: 11001, image: 'drive-download-20230713T032251Z-001/poetry book/15001.jpeg', category: 'poetry book', title: 'id: 11001', description: 'Poetry Book Image 1' },
+{ id: 11002, image: 'drive-download-20230713T032251Z-001/poetry book/15002.jpeg', category: 'poetry book', title: 'id: 11002', description: 'Poetry Book Image 2' },
+{ id: 11003, image: 'drive-download-20230713T032251Z-001/poetry book/15003.jpeg', category: 'poetry book', title: 'id: 11003', description: 'Poetry Book Image 3' },
+{ id: 11004, image: 'drive-download-20230713T032251Z-001/poetry book/15004.jpeg', category: 'poetry book', title: 'id: 11004', description: 'Poetry Book Image 4' },
+{ id: 11005, image: 'drive-download-20230713T032251Z-001/poetry book/15005.jpeg', category: 'poetry book', title: 'id: 11005', description: 'Poetry Book Image 5' },
+{ id: 11006, image: 'drive-download-20230713T032251Z-001/poetry book/15006.jpeg', category: 'poetry book', title: 'id: 11006', description: 'Poetry Book Image 6' },
+{ id: 11007, image: 'drive-download-20230713T032251Z-001/poetry book/15007.jpeg', category: 'poetry book', title: 'id: 11007', description: 'Poetry Book Image 7' },
+{ id: 11008, image: 'drive-download-20230713T032251Z-001/poetry book/15008.jpeg', category: 'poetry book', title: 'id: 11008', description: 'Poetry Book Image 8' },
+{ id: 11009, image: 'drive-download-20230713T032251Z-001/poetry book/15009.jpeg', category: 'poetry book', title: 'id: 11009', description: 'Poetry Book Image 9' }
+];
+
+    
+    // Function to toggle the menu on mobile devices
+    function toggleMenu() {
+        var menu = document.querySelector('nav ul');
+        menu.classList.toggle('show');
+    }
+    function disableRightClick(event) {
+        event.preventDefault();
+    }
+
+
+    // Attach the event listener to the document
+    document.addEventListener('contextmenu', disableRightClick);
+
+    const gallery = document.querySelector('.gallery');
+    const pagination = document.querySelector('.pagination');
+    const searchInput = document.getElementById('searchInput');
+    let currentPage = 1;
+    let itemsPerPage = 12;
+    let currentCategory = '';
+
+    // Display gallery items
+    function displayGalleryItems(items) {
+        gallery.innerHTML = '';
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+
+            const anchor = document.createElement('a');
+            anchor.href = 'page-url'; // Replace 'page-url' with the actual URL you want the image to link to
+
+            const image = document.createElement('img');
+            image.src = item.image;
+            image.alt = item.title;
+
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+
+            const overlayContent = document.createElement('div');
+            overlayContent.classList.add('overlay-content');
+
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+
+            const description = document.createElement('p');
+            description.textContent = item.description;
+
+            /*overlayContent.appendChild(title);*/
+            overlayContent.appendChild(description);
+            overlay.appendChild(overlayContent);
+            anchor.appendChild(image);
+
+            galleryItem.appendChild(anchor);
+            galleryItem.appendChild(overlay);
+            gallery.appendChild(galleryItem);
+
+            anchor.addEventListener('click', displayImage);
+
+        }
+    }
+
+    const frontView = document.querySelector('.front-view');
+
+    function displayImage(event) {
+        event.preventDefault();
+        const imageUrl = event.target.src;
+        const title = event.target.alt;
+
+        const frontViewImage = document.createElement('img');
+        let text = imageUrl;
+        text = text.replace('drive-download-20230713T032251Z-001', 'drive-download-20230713T032251Z-002');
+        frontViewImage.src = text;
+        frontViewImage.alt = title;
+
+        frontView.innerHTML = '';
+        frontView.appendChild(frontViewImage);
+
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close-button');
+        closeButton.textContent = 'x';
+        closeButton.addEventListener('click', function () {
+            frontView.classList.remove('active');
+        });
+
+        frontView.appendChild(closeButton);
+
+        frontView.classList.add('active');
+    }
+
+    // Event listener for pagination buttons
+    pagination.addEventListener('click', function (event) {
+        if (event.target.tagName === 'BUTTON') {
+            currentPage = parseInt(event.target.textContent);
+            displayGalleryItems(getCurrentPageItems());
+            generatePaginationButtons(getTotalPages(), currentPage);
+        }
+    });
+
+    // Generate pagination buttons
+    function generatePaginationButtons(totalPages, currentPage) {
+        pagination.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            if (i === currentPage) {
+                button.classList.add('active');
+            }
+            button.addEventListener('click', function () {
+                currentPage = i;
+                displayGalleryItems(getCurrentPageItems());
+                generatePaginationButtons(totalPages, currentPage);
+            });
+            pagination.appendChild(button);
+        }
+    }
+    // Get current page items based on items per page and current page
+    function getCurrentPageItems() {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return getFilteredItems().slice(startIndex, endIndex);
+    }
+
+    // Get filtered items based on search input and category
+    function getFilteredItems() {
+        const searchValue = searchInput.value.toLowerCase();
+        return galleryItems.filter((item) => {
+        const categoryMatch = currentCategory === '' || item.category === currentCategory;
+        const titleMatch = item.title.toLowerCase().includes(searchValue);
+        const descriptionMatch = item.description.toLowerCase().includes(searchValue);
+        return categoryMatch && (titleMatch || descriptionMatch);
+        });
+    }
+
+    // Event listeners for search input
+    searchInput.addEventListener('input', function () {
+        currentPage = 1;
+        displayGalleryItems(getCurrentPageItems());
+        generatePaginationButtons(getTotalPages(), currentPage);
+    });
+
+    // Event listener for category buttons
+    const categoryButtons = document.querySelectorAll('.category-button');
+    categoryButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+            
+            currentCategory = button.getAttribute('data-category');
+            currentPage = 1;
+            displayGalleryItems(getCurrentPageItems());
+            generatePaginationButtons(getTotalPages(), currentPage);
+            
+        });
+    });
+    function selectCategory(category) {
+        currentCategory = category;
+        currentPage = 1;
+        displayGalleryItems(getCurrentPageItems());
+        generatePaginationButtons(getTotalPages(), currentPage);
+    }
+
+    // Function to reset the CSS for all the buttons
+    function resetButtonStyles() {
+        const buttons = document.querySelectorAll('.category-button');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const allCategoriesButton = document.querySelector('.category-button[data-category=""]');
+        allCategoriesButton.click();
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Check if the 'category' parameter exists in the URL
+        if (urlParams.has('category')) {
+            // Get the value of the 'category' parameter
+            const category = urlParams.get('category');
+
+            // Find the corresponding category button
+            const categoryButtons = document.querySelectorAll('.category-button');
+            categoryButtons.forEach((button) => {
+            const dataCategory = button.getAttribute('data-category');
+            if (dataCategory === category) {
+                // Activate the corresponding category button
+                resetButtonStyles(); // Reset the styles for all buttons
+                button.classList.add('active'); // Add 'active' class to the corresponding button
+                currentCategory = category; // Set the current category
+                currentPage = 1; // Reset the current page
+                displayGalleryItems(getCurrentPageItems());
+                generatePaginationButtons(getTotalPages(), currentPage);
+            }
+            });
+        }
+    });
+
+    // Function to create and update category buttons
+    function createCategoryButtons() {
+        const uniqueCategories = ['', ...new Set(galleryItems.map(item => item.category))];
+        const categorySelect = document.getElementById('categorySelect');
+        categorySelect.innerHTML = '';
+
+        uniqueCategories.forEach(category => {
+            const button = document.createElement('button');
+            button.textContent = category === '' ? 'All' : category;
+            button.setAttribute('data-category', category);
+            button.classList.add('category-button');
+            button.addEventListener('click', function () {
+            resetButtonStyles(); // Reset the styles for all buttons
+            button.classList.add('active'); // Add 'active' class to the clicked button
+            selectCategory(category);
+            });
+            categorySelect.appendChild(button);
+        });
+    }
+
+    // Call the function to create category buttons initially
+    createCategoryButtons();
+
+    // Add the event listener for the "All Categories" button
+    const allCategoriesButton = document.querySelector('.category-button[data-category=""]');
+        allCategoriesButton.addEventListener('click', function () {
+            
+        selectCategory('');
+    });
+
+    // Get total number of pages based on filtered items and items per page
+    function getTotalPages() {
+        const filteredItems = getFilteredItems();
+        return Math.ceil(filteredItems.length / itemsPerPage);
+    }
+
+    // Initial display of gallery items and pagination
+    displayGalleryItems(getCurrentPageItems());
+    generatePaginationButtons(getTotalPages(), currentPage);
+
+    searchInput.addEventListener('input', function () {
+        currentPage = 1;
+        displayGalleryItems(getCurrentPageItems());
+        generatePaginationButtons(getTotalPages(), currentPage);
+    });
+
+</script>
+</body>
+</html>
